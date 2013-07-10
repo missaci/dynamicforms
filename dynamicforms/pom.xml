@@ -12,7 +12,6 @@
 		<java.version>1.6</java.version>
 
 		<!-- Controle de versões de plugins -->
-		<build.helper>1.7</build.helper>
 		<compiler.plugin>2.5.1</compiler.plugin>
 		<surefire.plugin>2.12</surefire.plugin>
 		<failsafe.plugin>2.12</failsafe.plugin>
@@ -22,8 +21,6 @@
 		<log4j.version>1.2.14</log4j.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
 
-		<!-- Configurações especificas para testes -->
-		<integration.dir>${basedir}/src/integration-test/java</integration.dir>
 	</properties>
 
 	<dependencies>
@@ -150,7 +147,7 @@
 	<build>
 		<testResources>
 			<testResource>
-				<directory>src/integration-test/resources</directory>
+				<directory>src/test/resources</directory>
 				<filtering>true</filtering>
 				<includes>
 					<include>**/*.xml</include>
@@ -167,25 +164,6 @@
 					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>${build.helper}</version>
-				<executions>
-					<execution>
-						<id>default</id>
-						<phase>process-test-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>${integration.dir}</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<!-- Configuração de testes unitários -->
 			<plugin>
@@ -226,43 +204,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.codehaus.mojo
-										</groupId>
-										<artifactId>
-											build-helper-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.7,)
-										</versionRange>
-										<goals>
-											<goal>add-test-source</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<execute>
-											<runOnIncremental>false</runOnIncremental>
-										</execute>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 </project>
