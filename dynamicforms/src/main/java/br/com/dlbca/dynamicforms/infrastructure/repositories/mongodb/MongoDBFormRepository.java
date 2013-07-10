@@ -9,6 +9,12 @@ import org.springframework.stereotype.Repository;
 import br.com.dlbca.dynamicforms.core.Form;
 import br.com.dlbca.dynamicforms.core.IFormRepository;
 
+/**
+ * The default mongoDB Repository
+ * 
+ * @author Mateus
+ *
+ */
 @Repository
 public class MongoDBFormRepository implements IFormRepository {
 

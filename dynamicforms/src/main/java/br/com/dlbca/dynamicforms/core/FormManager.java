@@ -6,6 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.dlbca.dynamicforms.core.validation.IDataValidator;
+import br.com.dlbca.dynamicforms.core.validation.IDataValidatorFactory;
+
 @Service
 /**
  * Class responsible for managing all form inputs and outputs 
@@ -16,10 +19,12 @@ import org.springframework.stereotype.Service;
 public class FormManager {
 
 	private IFormRepository repository;
+	private IDataValidatorFactory validatorFactory;
 
 	@Autowired
-	public FormManager(IFormRepository repository){
+	public FormManager(IFormRepository repository, IDataValidatorFactory validatorFactory){
 		this.repository = repository;
+		this.validatorFactory = validatorFactory;
 	}
 	
 	public Form persist(Form form) {
@@ -70,6 +75,8 @@ public class FormManager {
 		
 		public void addData(Map<String, Object> data){
 			Form form = manager.find(this.formId);
+			checkIfDataIsApplicable(form, data);
+			
 			form.addData(data);
 			manager.update(form);
 		}
@@ -77,6 +84,12 @@ public class FormManager {
 		public Form mergeContentWith(Form formToMerge){
 			formToMerge.setId(this.formId);
 			return manager.update(formToMerge);
+		}
+
+		private void checkIfDataIsApplicable(Form form, Map<String, Object> data) {
+			IDataValidator validator = validatorFactory.createDataValidatorFor(form);
+			validator.validateContentOf(data);
+			
 		}
 		
 	}

@@ -9,6 +9,12 @@ import org.codehaus.jackson.map.JsonDeserializer;
 
 import br.com.dlbca.dynamicforms.core.FieldType;
 
+/**
+ * Deserializer for enum case insensitive capabilities on fields
+ * 
+ * @author Mateus
+ *
+ */
 public class FieldTypeDeserializer extends JsonDeserializer<FieldType> {
 
 	@Override

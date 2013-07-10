@@ -7,12 +7,24 @@ import javax.validation.metadata.ConstraintDescriptor;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.validation.ObjectError;
 
+
+/**
+ * 
+ * Basic Wrapper for transforming ObjectErrors in
+ * ConstraintViolations.
+ * 
+ * This class permits that the validation handlers
+ * use the same structure for notifications
+ * 
+ * @author Mateus
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class ObjectErrorWrapper implements ConstraintViolation{
 
 	private ObjectError error;
 	
-	protected ObjectErrorWrapper (ObjectError error){
+	public ObjectErrorWrapper (ObjectError error){
 		this.error = error;
 	}
 	

@@ -14,6 +14,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Form is the base Entity of this project.
+ * Everything is related to this is some way.
+ * 
+ * @author Mateus
+ *
+ */
 @Document
 public class Form {
 	

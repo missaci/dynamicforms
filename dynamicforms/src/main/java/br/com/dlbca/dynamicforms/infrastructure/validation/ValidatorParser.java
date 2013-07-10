@@ -11,6 +11,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
+/**
+ * 
+ * This class is a Helper for 
+ * ConstraintViolationException treatment.
+ * 
+ * @author Mateus
+ *
+ */
+
 @Component
 public class ValidatorParser {
 	

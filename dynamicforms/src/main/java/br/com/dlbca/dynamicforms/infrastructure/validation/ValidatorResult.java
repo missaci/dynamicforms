@@ -4,7 +4,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 
+ * Simple ValueObject for
+ * validation errors presentation.
+ * 
+ * @author Mateus
+ *
+ */
 public class ValidatorResult {
 	
 	private Set<ConstraintFailure> errors = new HashSet<ConstraintFailure>();

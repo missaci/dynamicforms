@@ -1,5 +1,11 @@
 package br.com.dlbca.dynamicforms.core;
 
+/**
+ * Enum for control of field types
+ * 
+ * @author Mateus
+ *
+ */
 public enum FieldType {
 	
 	TEXT, 

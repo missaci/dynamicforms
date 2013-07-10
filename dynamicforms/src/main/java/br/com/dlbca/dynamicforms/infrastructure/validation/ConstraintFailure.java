@@ -1,5 +1,13 @@
 package br.com.dlbca.dynamicforms.infrastructure.validation;
 
+/**
+ * 
+ * Simple valueObject for constraint failures
+ * presentation
+ * 
+ * @author Mateus
+ *
+ */
 public class ConstraintFailure {
 	
 	private String message;

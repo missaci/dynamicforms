@@ -20,6 +20,8 @@ import br.com.dlbca.dynamicforms.core.FieldType;
 import br.com.dlbca.dynamicforms.core.Form;
 import br.com.dlbca.dynamicforms.core.FormManager;
 import br.com.dlbca.dynamicforms.core.IFormRepository;
+import br.com.dlbca.dynamicforms.core.validation.IDataValidator;
+import br.com.dlbca.dynamicforms.core.validation.IDataValidatorFactory;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FormManagerTest extends Mockito{
@@ -27,6 +29,8 @@ public class FormManagerTest extends Mockito{
 	private final static String FORM_LABEL = "TesteForm";
 	
 	@Mock private IFormRepository repository;
+	@Mock private IDataValidatorFactory validatorFactory;
+	@Mock private IDataValidator validator;
 	
 	private boolean persisted;
 	private FormManager manager;
@@ -34,10 +38,11 @@ public class FormManagerTest extends Mockito{
 	@Before
 	public void init(){
 		persisted = false;
-		manager = new FormManager(repository);
+		manager = new FormManager(repository, validatorFactory);
 		preparePersistMethod();
 		prepareFindMethod();
 		prepareUpdateMethod();
+		prepareCreateValidatorMethod();
 	}
 
 	@Test
@@ -91,6 +96,10 @@ public class FormManagerTest extends Mockito{
 	
 	private void prepareFindMethod(){
 		when(repository.find("fb1b8192-ec97-44f0-b677-063f1404e60b")).thenReturn(createForm(FORM_LABEL));
+	}
+	
+	private void prepareCreateValidatorMethod(){
+		when(validatorFactory.createDataValidatorFor(any(Form.class))).thenReturn(validator);
 	}
 	
 	private Field createSimpleField(String label){
